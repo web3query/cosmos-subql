@@ -29,4 +29,5 @@ type Message @entity {
   from: String!
   to: String!
   amount: String!
+  chainId: String!
 }

@@ -26,9 +26,11 @@ export async function handleTransaction(tx: CosmosTransaction): Promise<void> {
 */
 
 export async function handleTransferMessage(msg: CosmosMessage): Promise<void> {
+  const {height, chainId} = msg.block.block.header
   const messageRecord = Message.create({
     id: `${msg.tx.hash}-${msg.idx}`,
-    blockHeight: BigInt(msg.block.block.header.height),
+    blockHeight: BigInt(height),
+    chainId,
     txHash: msg.tx.hash,
     from: msg.msg.decodedMsg.fromAddress,
     to: msg.msg.decodedMsg.toAddress,
